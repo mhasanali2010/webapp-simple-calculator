@@ -8,36 +8,88 @@
 </head>
 <body>
     <h1>Simple WebApp Calculator</h1>
-    <div id="div1"><input id="inputbox"></div>
-    <div id="line1">
-        <button id="(">(</button>
-        <button id=")">)</button>
-        <button id="C">C</button>
-        <button id="^">^</button>
+    <div class="calculator-container">
+        <div class="left-panel">
+            <input id="inputbox" disabled>
+            <div class="row">
+                <button id="(">(</button>
+                <button id=")">)</button>
+                <button id="C">C</button>
+            </div>
+            <div class="row">
+                <button id="7">7</button>
+                <button id="8">8</button>
+                <button id="9">9</button>
+            </div>
+            <div class="row">
+                <button id="4">4</button>
+                <button id="5">5</button>
+                <button id="6">6</button>
+            </div>
+            <div class="row">
+                <button id="1">1</button>
+                <button id="2">2</button>
+                <button id="3">3</button>
+            </div>
+            <div class="row">
+                <button id="0">0</button>
+                <button id=".">.</button>
+                <button id="=">=</button>
+            </div>
+        </div>
+        <div class="right-panel">
+            <button id="bs">←</button>
+            <button id="^">^</button>
+            <button id="+">+</button>
+            <button id="-">-</button>
+            <button id="*">*</button>
+            <button id="/">/</button>
+        </div>
     </div>
-    <div id="line2">
-        <button id="7">7</button>
-        <button id="8">8</button>
-        <button id="9">9</button>
-        <button id="+">+</button>
-    </div>
-    <div id="line3">
-        <button id="4">4</button>
-        <button id="5">5</button>
-        <button id="6">6</button>
-        <button id="-">-</button>
-    </div>
-    <div id="line4">
-        <button id="1">1</button>
-        <button id="2">2</button>
-        <button id="3">3</button>
-        <button id="*">*</button>
-    </div>
-    <div>
-        <button id="0">0</button>
-        <button id=".">.</button>
-        <button id="=">=</button>
-        <button id="/">/</button>
-    </div>
+    <script>
+        const buttons = ["(",")","C","^","7","8","9","4","5","6","1","2","3","0","+","-","*",".","=","/","←"]
+        const allButtons = document.querySelectorAll("button")
+        const inputbox = document.getElementById('inputbox')
+        
+        function sub() {
+
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'C' || event.key === 'c') {
+                inputbox.value = "";
+            }
+            else if (event.key === '=' || event.key === 'Enter')  {
+                sub();
+            }
+            else if (event.key === 'Backspace') {
+                inputbox.value = inputbox.value.slice(0, -1);
+                event.preventDefault();
+            }
+            else if (buttons.includes(event.key)) {
+                inputbox.value += event.key;
+            }
+        })
+
+        allButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const key = button.id;
+
+                if (key === 'C') {
+                    inputbox.value = "";
+                }
+                else if (key === '=') {
+                    sub();
+                }
+                else if (key == 'bs') {
+                    inputbox.value = inputbox.value.slice(0, -1);
+                    event.preventDefault();
+                }
+                else {
+                    inputbox.value += key;
+                }
+            })
+        })
+    </script>
 </body>
 </html>

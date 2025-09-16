@@ -17,17 +17,23 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* Calculator display */
-#div1 {
-    width: 85vw;
-    max-width: 380px;
-    margin-bottom: 15px;
+/* Calculator display and layout */
+.calculator-container {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    gap: 12px;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 #inputbox {
-    width: 100%;
+    width: calc(3 * 80px + 2 * 12px); /* 3 buttons + 2 gaps */
     height: 60px;
     border-radius: 25px;
     border: 3px solid #222;
@@ -39,36 +45,18 @@ h1 {
     margin-bottom: 0;
     box-shadow: none;
     font-family: inherit;
+    filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="squiggly"><feTurbulence baseFrequency="0.02" numOctaves="3" seed="2" result="turb"/><feDisplacementMap in2="turb" in="SourceGraphic" scale="2" xChannelSelector="R" yChannelSelector="G"/></filter></svg>#squiggly');
 }
 
-/* Calculator buttons layout */
-#div1,
-#div1 + div,
-#div1 + div + div,
-#div1 + div + div + div,
-#div1 + div + div + div + div,
-#div1 + div + div + div + div + div {
-    width: 85vw;
-    max-width: 380px;
+.right-panel {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     gap: 12px;
-    margin-bottom: 10px;
 }
 
-#div1 + div > button,
-#div1 + div + div > button,
-#div1 + div + div + div > button,
-#div1 + div + div + div + div > button,
-#div1 + div + div + div + div + div > button {
-    flex: 1 1 0;
-}
-
-/* Button styles */
-button {
+#bs {
     height: 60px;
-    min-width: 60px;
-    max-width: 80px;
+    width: 80px;
     font-size: 1.2rem;
     border-radius: 15px;
     border: 3px solid #222;
@@ -79,50 +67,69 @@ button {
     cursor: pointer;
     font-family: inherit;
     transition: background-color 0.15s, transform 0.1s, border-color 0.15s;
-    /* Hand-drawn effect */
     box-shadow: 0 0 0 2px transparent;
+    filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="squiggly"><feTurbulence baseFrequency="0.02" numOctaves="3" seed="2" result="turb"/><feDisplacementMap in2="turb" in="SourceGraphic" scale="2" xChannelSelector="R" yChannelSelector="G"/></filter></svg>#squiggly');
 }
 
 /* On hover effect for buttons */
-button:hover {
+button:hover,
+#bs:hover {
     background: #e6e6e6;
     transform: scale(1.07);
     border-color: #444;
 }
 
-button:active {
+button:active,
+#bs:active {
     background: #f0f0f0;
     transform: scale(0.97);
 }
 
-/* Hand-drawn border effect using SVG filter */
-button, #inputbox {
+/* Calculator buttons layout */
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+button {
+    height: 60px;
+    width: 80px;
+    font-size: 1.2rem;
+    border-radius: 15px;
+    border: 3px solid #222;
+    background: #fff;
+    margin: 0;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.15s, transform 0.1s, border-color 0.15s;
+    box-shadow: 0 0 0 2px transparent;
     filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="squiggly"><feTurbulence baseFrequency="0.02" numOctaves="3" seed="2" result="turb"/><feDisplacementMap in2="turb" in="SourceGraphic" scale="2" xChannelSelector="R" yChannelSelector="G"/></filter></svg>#squiggly');
 }
 
 /* Responsive for mobile */
 @media (max-width: 600px) {
-    #div1,
-    #div1 + div,
-    #div1 + div + div,
-    #div1 + div + div + div,
-    #div1 + div + div + div + div,
-    #div1 + div + div + div + div + div {
-        width: 98vw;
-        max-width: 98vw;
+    .calculator-container {
         gap: 6px;
     }
-    button {
-        min-width: 38px;
-        height: 38px;
-        font-size: 0.9rem;
-        border-radius: 8px;
+    .left-panel, .right-panel {
+        gap: 6px;
     }
     #inputbox {
+        width: calc(3 * 38px + 2 * 6px);
         height: 38px;
         font-size: 0.9rem;
         border-radius: 10px;
         padding: 6px;
+    }
+    button,
+    #bs {
+        width: 38px;
+        height: 38px;
+        font-size: 0.9rem;
+        border-radius: 8px;
     }
     h1 {
         font-size: 1.1rem;
