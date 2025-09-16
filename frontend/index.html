@@ -52,7 +52,13 @@
         const inputbox = document.getElementById('inputbox')
         
         function sub() {
-
+            fetch('http://localhost:5000/eval', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({"expression": inputbox.value})
+            })
+            .then(res => res.json())
+            .then(data => inputbox.value = data.result)
         }
 
         document.addEventListener('keydown', function(event) {
@@ -83,7 +89,6 @@
                 }
                 else if (key == 'bs') {
                     inputbox.value = inputbox.value.slice(0, -1);
-                    event.preventDefault();
                 }
                 else {
                     inputbox.value += key;
