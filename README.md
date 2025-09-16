@@ -23,6 +23,16 @@ Expression written in input box is posted to the flask backend which evaluates i
     git clone https://github.com/mhasanali2010/webapp-simple-calculator
     cd webapp-simple-calculator
     ```
+- (Optional) Set up virtual environmet:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate # for macOS/Linux
+    venv\Scripts\activate # for Windows (cmd)
+    .\venv\Scripts\Activate.ps1 # for Windows (Powersell)
+- Install dependenices:
+    ```bash
+    pip install -r requirements.txt
+    ```
 - Navigate to `backend` folder:
     ```bash
     cd backend
