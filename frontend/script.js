@@ -1,4 +1,4 @@
-const backendURL = "http://localhost:5000"
+const backendURL = "https://mhasanali2010.pythonanywhere.com"
 const buttons = ["(",")","C","^","7","8","9","4","5","6","1","2","3","0","+","-","*",".","=","/","←"]
         const allButtons = document.querySelectorAll("button")
         const inputbox = document.getElementById('inputbox')
